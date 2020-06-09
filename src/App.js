@@ -1,28 +1,28 @@
 import React from 'react';
 
-// function App() {
-//   return (
-//     <div>
-//         <h1>
-//           Hello World
-//         </h1>
-//     </div>
-//   );
-// }
-
 const App = () => {
+  const profiles = [
+    {name: "Takro", age:"10"},
+    {name: "Hanako", age:"5"},
+    {name: "NoName"}
+  ]
   return (
-  <div>
-      <Cat />
-      <Cat />
-      <Cat />
-      <Cat />
+    <div>
+      {
+        profiles.map((profiles, index) => {
+          return <User name={profiles.name} age={profiles.age} key={index}/>
+        })
+      }
   </div>
   )
 }
 
-const Cat = () => {
-  return <div>Meow!</div>
+const User = (props) => {
+  return <div>Hi!, I am {props.name}. I am {props.age} years old.</div>
+}
+
+User.defaultProps = {
+  age: 1
 }
 
 export default App;

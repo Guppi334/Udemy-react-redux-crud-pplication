@@ -38,14 +38,14 @@ class EventsIndex extends Component {
                 <ContentAdd />
             </FloatingActionButon>
           <Table>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+            <TableHeader displaySelectAll={false} adjustforcheckbox="false">
               <TableRow>
                 <TableHeaderColumn>ID</TableHeaderColumn>
                 <TableHeaderColumn>Title</TableHeaderColumn>
                 <TableHeaderColumn>Body</TableHeaderColumn>
               </TableRow>
             </TableHeader>
-            <TableBody displayRowCheckbox={false} adjustForCheckbox={false}>
+            <TableBody displayRowCheckbox={false} adjustforcheckbox="false">
               {this.renderEvents()}
             </TableBody>
           </Table>

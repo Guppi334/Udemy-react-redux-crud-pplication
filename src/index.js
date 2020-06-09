@@ -11,6 +11,7 @@ import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk'
 import { BrowserRouter, Route, Switch, Router} from 'react-router-dom'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 
 // 開発者の場合にのみdevtoolsでデバッグを行う
@@ -18,16 +19,18 @@ const enhancer = process.env.NODE_ENV === 'development' ? composeWithDevTools(ap
 const store = createStore(reducer, enhancer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/events/new" component={EventsNew}></Route>
-        <Route path="/events/:id" component={EventsShow} />
-        <Route exact path="/" component={EventsIndex}></Route>
-        <Route exact path="/events" component={EventsIndex} />
-        </Switch>
-    </BrowserRouter>
-  </Provider>,
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/events/new" component={EventsNew}></Route>
+          <Route path="/events/:id" component={EventsShow} />
+          <Route exact path="/" component={EventsIndex}></Route>
+          <Route exact path="/events" component={EventsIndex} />
+          </Switch>
+      </BrowserRouter>
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 

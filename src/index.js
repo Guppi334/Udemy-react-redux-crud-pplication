@@ -6,21 +6,25 @@ import './index.css';
 import reducer from './reducers';
 import EventsIndex from './components/events_index';
 import EventsNew from './components/events_new';
+import EventsShow from './components/events_show';
 import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk'
 import { BrowserRouter, Route, Switch, Router} from 'react-router-dom'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
-
-const store = createStore(reducer, applyMiddleware(thunk));
-
+// 開発者の場合にのみdevtoolsでデバッグを行う
+const enhancer = process.env.NODE_ENV === 'development' ? composeWithDevTools(applyMiddleware(thunk)) : applyMiddleware(thunk)
+const store = createStore(reducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/events/new" component={EventsNew}></Route>
+        <Route path="/events/new" component={EventsNew}></Route>
+        <Route path="/events/:id" component={EventsShow} />
         <Route exact path="/" component={EventsIndex}></Route>
+        <Route exact path="/events" component={EventsIndex} />
         </Switch>
     </BrowserRouter>
   </Provider>,
